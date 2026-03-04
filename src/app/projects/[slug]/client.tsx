@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ExternalLink, Github } from 'lucide-react'
@@ -42,8 +43,16 @@ export default function ProjectDetailClient({ project, nextProject }: ProjectDet
 
     return (
         <div className="min-h-screen">
-            <div ref={heroRef} className="relative flex aspect-[3/2] max-h-[70vh] items-end overflow-hidden" style={{ background: project.imageGradient }}>
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-base)] via-transparent to-transparent" />
+            <div ref={heroRef} className="relative flex aspect-[3/2] max-h-[70vh] items-end overflow-hidden">
+                <Image
+                    src={`/projects/${project.slug}.png`}
+                    alt={project.title}
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent pointer-events-none" />
                 <div className="relative z-10 px-6 pb-12 md:px-16 lg:px-24">
                     <span className="text-[10px] font-medium uppercase tracking-widest text-[var(--text-muted)]">{project.category} · {project.year}</span>
                     <h1 className="mt-2 font-display text-5xl font-bold text-[var(--text-primary)] md:text-7xl">{project.title}</h1>

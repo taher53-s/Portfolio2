@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
@@ -21,11 +22,23 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             >
-                <motion.div className="aspect-[16/10] w-full" style={{ background: project.imageGradient }} whileHover={{ scale: 1.06 }} transition={{ type: 'spring', stiffness: 200, damping: 20 }}>
+                <div className="relative w-full overflow-hidden" style={{ aspectRatio: '3 / 2' }}>
+                    <Image
+                        src={`/projects/${project.slug}.png`}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 ease-[var(--ease-expo)] group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent pointer-events-none" />
+                    <div
+                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{ boxShadow: `inset 0 0 60px ${project.accentColor}22` }}
+                    />
                     <div className="absolute right-3 top-3 flex gap-2">
                         <span className={cn('rounded-full border bg-[var(--surface-3)] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider', statusColors[project.status])}>{project.status === 'in-progress' ? 'In Progress' : project.status}</span>
                     </div>
-                </motion.div>
+                </div>
                 <div className="p-5">
                     <p className="text-[10px] font-medium uppercase tracking-widest text-[var(--text-muted)]">{project.category} · {project.year}</p>
                     <h3 className="mt-1 text-lg font-semibold text-[var(--text-primary)]">{project.title}</h3>
