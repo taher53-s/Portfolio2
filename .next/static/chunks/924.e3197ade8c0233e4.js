@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[924],{4924:function(e,n,t){t.d(n,{loadGSAP:function(){return i}});async function i(){let{gsap:e}=await Promise.all([t.e(922),t.e(582)]).then(t.bind(t,9582)),{ScrollTrigger:n}=await t.e(204).then(t.bind(t,1204));return e.registerPlugin(n),{gsap:e,ScrollTrigger:n}}}}]);

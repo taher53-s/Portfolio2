@@ -34,6 +34,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
     return (
         <>
+            <div data-cursor-ring aria-hidden="true" />
+            <div data-cursor-dot aria-hidden="true" />
             <Cursor />
             <NavBar />
             <CommandPalette open={paletteOpen} onOpenChange={setPaletteOpen} />

@@ -1,38 +1,45 @@
 {
-  "components/sections/About.tsx -> @/lib/gsap": {
-    "id": "components/sections/About.tsx -> @/lib/gsap",
+  "app/projects/[slug]/client.tsx -> @/lib/gsap": {
+    "id": 4924,
     "files": [
-      "static/chunks/_app-pages-browser_src_lib_gsap_ts.js"
+      "static/chunks/924.e3197ade8c0233e4.js"
+    ]
+  },
+  "components/sections/About.tsx -> @/lib/gsap": {
+    "id": 4924,
+    "files": [
+      "static/chunks/924.e3197ade8c0233e4.js"
     ]
   },
   "components/sections/Experience.tsx -> @/lib/gsap": {
-    "id": "components/sections/Experience.tsx -> @/lib/gsap",
+    "id": 4924,
     "files": [
-      "static/chunks/_app-pages-browser_src_lib_gsap_ts.js"
+      "static/chunks/924.e3197ade8c0233e4.js"
     ]
   },
   "components/sections/FeaturedExperiment.tsx -> @/lib/gsap": {
-    "id": "components/sections/FeaturedExperiment.tsx -> @/lib/gsap",
+    "id": 4924,
     "files": [
-      "static/chunks/_app-pages-browser_src_lib_gsap_ts.js"
+      "static/chunks/924.e3197ade8c0233e4.js"
     ]
   },
   "components/sections/ScrollStory.tsx -> @/lib/gsap": {
-    "id": "components/sections/ScrollStory.tsx -> @/lib/gsap",
+    "id": 4924,
     "files": [
-      "static/chunks/_app-pages-browser_src_lib_gsap_ts.js"
+      "static/chunks/924.e3197ade8c0233e4.js"
     ]
   },
   "lib/gsap.ts -> gsap": {
-    "id": "lib/gsap.ts -> gsap",
+    "id": 9582,
     "files": [
-      "static/chunks/_app-pages-browser_node_modules_gsap_index_js.js"
+      "static/chunks/c15bf2b0.2192963599185b64.js",
+      "static/chunks/582.05be526c8c702960.js"
     ]
   },
   "lib/gsap.ts -> gsap/ScrollTrigger": {
-    "id": "lib/gsap.ts -> gsap/ScrollTrigger",
+    "id": 1204,
     "files": [
-      "static/chunks/_app-pages-browser_node_modules_gsap_ScrollTrigger_js.js"
+      "static/chunks/204.bf3d15ce8744090a.js"
     ]
   }
 }
