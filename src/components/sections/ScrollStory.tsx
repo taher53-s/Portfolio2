@@ -21,7 +21,7 @@ export default function ScrollStory({ id }: ScrollStoryProps) {
 
             ctx = gsap.context(() => {
                 const tl = gsap.timeline({
-                    scrollTrigger: { trigger: container, start: 'top top', end: 'bottom bottom', pin: stage, scrub: 0.8 },
+                    scrollTrigger: { trigger: container, start: 'top top', end: '+=300%', pin: stage, anticipatePin: 1, scrub: 1 },
                 })
 
                 tl.fromTo('#ch1', { scale: 0.88, opacity: 0 }, { scale: 1, opacity: 1, duration: 1 })

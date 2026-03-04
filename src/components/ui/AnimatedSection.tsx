@@ -31,7 +31,7 @@ export default function AnimatedSection({ children, className, delay = 0, direct
     }
 
     return (
-        <motion.div className={cn(className)} initial={hidden} whileInView={visible} viewport={{ once, margin: '-10%' }}>
+        <motion.div className={cn(className)} initial={hidden} whileInView={visible} viewport={{ once, margin: '0px 0px -80px 0px' }}>
             {children}
         </motion.div>
     )

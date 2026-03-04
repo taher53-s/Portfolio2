@@ -34,9 +34,9 @@ export default function About({ id }: AboutProps) {
             const { gsap, ScrollTrigger } = await loadGSAP()
 
             ctx = gsap.context(() => {
-                gsap.fromTo(line, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: container, start: 'top 70%', end: 'bottom 50%', scrub: true } })
+                gsap.fromTo(line, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: container, start: 'top 80%', end: 'bottom 40%', scrub: true } })
                 container.querySelectorAll('.tl-item').forEach((item) => {
-                    gsap.fromTo(item, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'expo.out', scrollTrigger: { trigger: item, start: 'top 85%' } })
+                    gsap.fromTo(item, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: 'expo.out', scrollTrigger: { trigger: item, start: 'top 85%', end: 'top 40%', toggleActions: 'play none none reverse' } })
                 })
                 ScrollTrigger.refresh()
             }, container)

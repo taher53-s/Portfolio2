@@ -26,6 +26,39 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         }
         rafId.current = requestAnimationFrame(raf)
 
+        // Sync Lenis with GSAP ScrollTrigger
+        async function syncGSAP() {
+            const { loadGSAP } = await import('@/lib/gsap')
+            const { ScrollTrigger } = await loadGSAP()
+
+            lenis!.on('scroll', () => {
+                ScrollTrigger.update()
+            })
+
+            ScrollTrigger.scrollerProxy(document.body, {
+                scrollTop(value?: number) {
+                    if (arguments.length && value !== undefined) {
+                        lenis!.scrollTo(value, { immediate: true })
+                    }
+                    return lenis!.scroll
+                },
+                getBoundingClientRect() {
+                    return {
+                        top: 0,
+                        left: 0,
+                        width: window.innerWidth,
+                        height: window.innerHeight,
+                    }
+                },
+                pinType: document.body.style.transform ? 'transform' : 'fixed',
+            })
+
+            ScrollTrigger.addEventListener('refresh', () => lenis!.resize())
+            ScrollTrigger.refresh()
+        }
+
+        syncGSAP()
+
         return () => {
             cancelAnimationFrame(rafId.current)
             destroyLenis()
