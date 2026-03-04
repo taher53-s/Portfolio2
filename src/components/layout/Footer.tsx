@@ -29,9 +29,12 @@ export default function Footer() {
                         ))}
                     </div>
                 </div>
-                <div className="mt-12 border-t border-[var(--surface-border)] pt-6">
-                    <p className="text-xs text-[var(--text-muted)]">© 2025 Taher Sohagpurwala · Built with Next.js, Framer Motion, GSAP</p>
-                    <p className="mt-1 text-[10px] text-[var(--text-muted)]">Designed &amp; developed with obsessive attention to detail.</p>
+                <div className="mt-12 border-t border-[var(--surface-border)] pt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p className="text-xs text-[var(--text-muted)]">© 2025 Taher Sohagpurwala · Built with Next.js, Framer Motion, GSAP</p>
+                        <p className="mt-1 text-[10px] text-[var(--text-muted)]">Designed &amp; developed with obsessive attention to detail.</p>
+                    </div>
+                    <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Made in Mumbai 🇮🇳</span>
                 </div>
             </footer>
         </AnimatedSection>

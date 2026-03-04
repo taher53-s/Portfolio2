@@ -62,17 +62,19 @@ export default function Experience({ id }: ExperienceProps) {
                             </div>
                             <p className="mt-3 text-sm text-[var(--text-secondary)]">{exp.description}</p>
                             <ul className="mt-3 space-y-1">
-                                {exp.highlights.map((h, i) => <li key={i} className="flex gap-2 text-xs text-[var(--text-secondary)]"><span className="mt-1 h-1 w-1 shrink-0 rounded-full bg-[var(--accent-a-300)]" />{h}</li>)}
+                                {exp.highlights.map((h, i) => <li key={i} className="flex gap-2 text-xs text-[var(--text-secondary)]"><span className="shrink-0 text-[var(--accent-a-200)]">→</span>{h}</li>)}
                             </ul>
                         </GlassPanel>
                     </div>
                 ))}
             </div>
 
-            <div className="mt-8 flex gap-3 overflow-x-auto pb-2" style={{ animation: 'none' }}>
-                {[...allStack, ...allStack].map((tag, i) => (
-                    <span key={i} className="shrink-0 whitespace-nowrap rounded-full border border-[var(--surface-border)] bg-[var(--surface-2)] px-3 py-1 text-[10px] text-[var(--text-muted)]">{tag}</span>
-                ))}
+            <div className="mt-8 marquee-mask overflow-hidden">
+                <div className="marquee-track gap-3">
+                    {[...allStack, ...allStack].map((tag, i) => (
+                        <span key={i} className="shrink-0 whitespace-nowrap rounded-full border border-[var(--surface-border)] bg-[var(--surface-2)] px-3 py-1 text-[10px] text-[var(--text-muted)]">{tag}</span>
+                    ))}
+                </div>
             </div>
         </section>
     )

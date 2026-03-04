@@ -16,7 +16,7 @@ export default function Certifications({ id }: CertificationsProps) {
     return (
         <section id={id} className="py-32 px-6 md:px-16 lg:px-24">
             <AnimatedSection>
-                <h2 className="font-display text-4xl font-bold text-[var(--text-primary)] md:text-6xl">Credentials &amp; Events</h2>
+                <h2 className="font-display text-4xl font-bold text-[var(--text-primary)] md:text-6xl">Credentials &amp; Recognition</h2>
             </AnimatedSection>
 
             <div className="mt-16 grid gap-12 lg:grid-cols-2">
