@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-base: #0B0F14;
+  --color-base-soft: #0F141A;
+  --color-ink: #0D1117;
+
+  --surface-1: #0B0F14;
+  --surface-2: rgba(15, 20, 28, 0.55);
+  --surface-3: rgba(20, 28, 40, 0.82);
+  --surface-border: rgba(255, 255, 255, 0.055);
+  --surface-border-bright: rgba(255, 255, 255, 0.13);
+
+  --accent-a-100: hsl(156 100% 72%);
+  --accent-a-200: hsl(156 85% 52%);
+  --accent-a-300: hsl(156 65% 32%);
+  --accent-a-glow: hsl(156 100% 60% / 0.22);
+  --accent-a-glow-lg: hsl(156 100% 55% / 0.10);
+
+  --accent-b-100: hsl(36 100% 74%);
+  --accent-b-200: hsl(36 90% 58%);
+  --accent-b-300: hsl(36 68% 38%);
+  --accent-b-glow: hsl(36 100% 60% / 0.22);
+  --accent-b-glow-lg: hsl(36 100% 55% / 0.10);
+
+  --accent-c-100: hsl(200 100% 72%);
+  --accent-c-200: hsl(200 85% 55%);
+  --accent-c-glow: hsl(200 100% 60% / 0.18);
+
+  --text-primary: hsl(210 40% 96%);
+  --text-secondary: hsl(215 20% 65%);
+  --text-muted: hsl(215 15% 38%);
+  --text-code: hsl(156 60% 70%);
+
+  --glow-xs: 0 0 8px var(--accent-a-glow);
+  --glow-sm: 0 0 16px var(--accent-a-glow);
+  --glow-md: 0 0 32px var(--accent-a-glow), 0 0 64px var(--accent-a-glow-lg);
+  --glow-lg: 0 0 64px var(--accent-a-glow), 0 0 120px var(--accent-a-glow-lg);
+  --glow-b-sm: 0 0 16px var(--accent-b-glow);
+  --glow-b-md: 0 0 32px var(--accent-b-glow), 0 0 64px var(--accent-b-glow-lg);
+  --glow-c-sm: 0 0 16px var(--accent-c-glow);
+
+  --blur-xs: blur(4px);
+  --blur-sm: blur(8px);
+  --blur-md: blur(16px);
+  --blur-lg: blur(32px);
+  --blur-xl: blur(64px);
+
+  --z-base: 0;
+  --z-raised: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-cursor: 40;
+  --z-nav: 50;
+  --z-palette: 60;
+  --z-top: 100;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-circ: cubic-bezier(0.85, 0, 0.15, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 600ms;
+  --dur-xslow: 1200ms;
+
+  --noise-opacity: 0.032;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('/noise.svg');
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: var(--noise-opacity);
+  pointer-events: none;
+  z-index: var(--z-top);
+  mix-blend-mode: overlay;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-base);
+  color: var(--text-primary);
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+::selection {
+  background: var(--accent-a-300);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-a-300);
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes meshA {
+  0% {
+    background-position: 15% 25%;
+  }
+
+  100% {
+    background-position: 85% 75%;
+  }
+}
+
+@keyframes meshB {
+  0% {
+    background-position: 85% 75%;
+  }
+
+  100% {
+    background-position: 15% 25%;
+  }
+}
+
+@keyframes meshC {
+  0% {
+    background-position: 65% 8%;
+  }
+
+  100% {
+    background-position: 25% 92%;
+  }
+}
+
+@keyframes meshD {
+  0% {
+    background-position: 40% 90%;
+  }
+
+  100% {
+    background-position: 60% 10%;
+  }
+}
+
+@keyframes scrollBounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes pulseDot {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.5);
+  }
+}
+
+@keyframes clipRevealUp {
+  0% {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  100% {
+    clip-path: inset(0% 0 0 0);
+  }
+}
+
+@keyframes ghCell {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
