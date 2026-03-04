@@ -224,3 +224,72 @@ body {
     transform: scale(1);
   }
 }
+
+/* ── Cursor: hide on touch/coarse pointer devices ────────────────────── */
+@media (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+
+  [data-cursor-ring],
+  [data-cursor-dot] {
+    display: none !important;
+  }
+}
+
+/* ── Cursor elements base ─────────────────────────────────────────────── */
+[data-cursor-ring] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid hsl(156 85% 52% / 0.7);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(calc(var(--cx, -100) * 1px - 50%), calc(var(--cy, -100) * 1px - 50%));
+  transition: transform 180ms var(--ease-expo),
+    width 200ms var(--ease-expo),
+    height 200ms var(--ease-expo),
+    border-color 200ms ease,
+    border-radius 200ms ease;
+  will-change: transform;
+}
+
+[data-cursor-dot] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: hsl(156 85% 52%);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(calc(var(--cx, -100) * 1px - 50%), calc(var(--cy, -100) * 1px - 50%));
+  transition: transform 60ms linear;
+  will-change: transform;
+}
+
+/* Cursor state: pointer */
+body[data-cursor-state="pointer"] [data-cursor-ring] {
+  width: 40px;
+  height: 40px;
+  border-color: hsl(156 85% 52% / 0.9);
+  mix-blend-mode: screen;
+}
+
+/* Cursor state: text */
+body[data-cursor-state="text"] [data-cursor-ring] {
+  width: 2px;
+  height: 24px;
+  border-radius: 1px;
+}
+
+/* Cursor state: magnetic */
+body[data-cursor-state="magnetic"] [data-cursor-ring] {
+  width: 56px;
+  height: 56px;
+  border-color: hsl(36 90% 58% / 0.85);
+}
