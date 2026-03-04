@@ -19,7 +19,7 @@ const sampleCode = `async function buildPipeline(config: PipelineConfig) {
 
 const scores = [
     { project: 'Mission Control', score: 97 },
-    { project: 'Vim Marketplace', score: 95 },
+    { project: 'Neovim Marketplace', score: 95 },
     { project: 'Prism Analytics', score: 96 },
     { project: 'DevForge Landing', score: 98 },
 ]

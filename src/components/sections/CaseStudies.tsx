@@ -5,7 +5,7 @@ import GlassPanel from '@/components/ui/GlassPanel'
 import MagneticButton from '@/components/ui/MagneticButton'
 import { projects } from '@/data/projects'
 
-const caseStudies = projects.filter((p) => p.slug === 'mission-control' || p.slug === 'vim-plugin-marketplace')
+const caseStudies = projects.filter((p) => p.slug === 'mission-control' || p.slug === 'neovim-plugin-marketplace')
 
 interface CaseStudiesProps { id?: string }
 

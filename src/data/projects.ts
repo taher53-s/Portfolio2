@@ -39,9 +39,9 @@ export const projects: Project[] = [
         githubUrl: 'https://github.com/taher53-s/mission-control',
     },
     {
-        slug: 'vim-plugin-marketplace',
-        title: 'Vim Plugin Marketplace',
-        category: 'Systems · Developer Tooling',
+        slug: 'neovim-plugin-marketplace',
+        title: 'Neovim Plugin Marketplace',
+        category: 'Systems · Neovim Ecosystem',
         year: '2024',
         status: 'shipped',
         tagline: 'A typed plugin registry and discovery engine for the Neovim ecosystem.',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
         imageDescription: 'Neovim-inspired terminal UI reimagined as a modern SaaS marketplace.',
         featured: true,
         gridSpan: 'wide',
-        githubUrl: 'https://github.com/taher53-s/vim-plugin-marketplace',
+        githubUrl: 'https://github.com/taher53-s/neovim-plugin-marketplace',
     },
     {
         slug: 'synthflow',
