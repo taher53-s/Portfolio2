@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import GradientMeshBackground from '@/components/sections/GradientMeshBackground'
 import MagneticButton from '@/components/ui/MagneticButton'
 import CounterStat from '@/components/ui/CounterStat'
+import GlassPanel from '@/components/ui/GlassPanel'
 
 const words1 = ['TAHER']
 const words2 = ['SOHAG-']
@@ -13,8 +14,13 @@ function WordReveal({ word, delay, outline }: { word: string; delay: number; out
     const reduced = useReducedMotion()
     return (
         <motion.span
-            className={`inline-block ${outline ? 'font-display font-extrabold [-webkit-text-stroke:2px_var(--accent-a-200)] text-transparent' : 'font-display font-extrabold text-[var(--text-primary)]'}`}
-            style={{ fontSize: 'clamp(5rem, 13vw, 14rem)', lineHeight: 0.9 }}
+            className={`inline-block ${outline ? 'font-display font-extrabold text-outline' : 'font-display font-extrabold text-[var(--text-primary)]'}`}
+            style={{
+                fontSize: 'clamp(5rem, 13vw, 14rem)',
+                lineHeight: 0.9,
+                letterSpacing: '-0.05em',
+                ...(!outline ? { textShadow: '0 0 80px var(--accent-a-glow)' } : { paintOrder: 'stroke fill' }),
+            }}
             initial={reduced ? {} : { clipPath: 'inset(100% 0 0 0)' }}
             animate={reduced ? {} : { clipPath: 'inset(0% 0 0 0)' }}
             transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
@@ -24,20 +30,31 @@ function WordReveal({ word, delay, outline }: { word: string; delay: number; out
     )
 }
 
+const eyebrowSegments = ['BTech CS (AI & ML)', 'Atlas Skilltech', 'Mumbai', '2024–2028']
+
 interface HeroProps { id?: string }
 
 export default function Hero({ id }: HeroProps) {
+    const reduced = useReducedMotion()
+
     return (
         <section id={id} className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 md:px-16 lg:px-24">
             <GradientMeshBackground />
 
             <div className="relative z-10 max-w-5xl">
-                <motion.p
-                    className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent-a-200)]"
-                    initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }}
+                <motion.div
+                    className="flex flex-wrap items-center gap-0 font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]"
+                    initial={reduced ? {} : { opacity: 0, y: 12, clipPath: 'inset(100% 0 0 0)' }}
+                    animate={reduced ? {} : { opacity: 1, y: 0, clipPath: 'inset(0% 0 0 0)' }}
+                    transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    BTech CS (AI &amp; ML) · Atlas Skilltech · Mumbai
-                </motion.p>
+                    {eyebrowSegments.map((seg, i) => (
+                        <span key={i} className="flex items-center">
+                            {i > 0 && <span className="mx-[0.6em] text-[var(--accent-a-200)]">·</span>}
+                            {seg}
+                        </span>
+                    ))}
+                </motion.div>
 
                 <div className="mt-4 flex flex-col">
                     {words1.map((w, i) => <WordReveal key={w} word={w} delay={0.4 + i * 0.1} />)}
@@ -61,29 +78,44 @@ export default function Hero({ id }: HeroProps) {
                 </motion.div>
 
                 <motion.div
-                    className="mt-12 flex gap-10"
+                    className="mt-12 flex flex-wrap gap-4"
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.2, duration: 0.6 }}
                 >
-                    <CounterStat value={6} suffix="+" label="Projects Shipped" />
-                    <CounterStat value={3} suffix="+" label="Open Source Repos" />
-                    <CounterStat value={500} suffix="+" label="GitHub Stars" />
+                    {[
+                        { value: 6, suffix: '+', label: 'Projects Shipped' },
+                        { value: 500, suffix: '+', label: 'GitHub Stars' },
+                        { value: 3, suffix: '', label: 'Domains — AI · DevOps · Web' },
+                    ].map((stat) => (
+                        <GlassPanel key={stat.label} className="border-t border-[var(--accent-a-300)]/40">
+                            <div className="px-6 py-4">
+                                <CounterStat value={stat.value} suffix={stat.suffix} label={stat.label} />
+                            </div>
+                        </GlassPanel>
+                    ))}
                 </motion.div>
             </div>
 
             <motion.div
-                className="absolute bottom-8 left-6 z-10 flex items-center gap-2 md:left-16"
+                className="absolute bottom-8 left-6 z-10 md:left-16"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.6, duration: 0.6 }}
             >
-                <span className="h-2 w-2 rounded-full bg-[var(--accent-a-200)]" style={{ animation: 'pulseDot 2s ease-in-out infinite' }} />
-                <span className="font-mono text-[11px] text-[var(--text-secondary)]">Available for opportunities</span>
+                <GlassPanel className="flex items-center gap-3 px-4 py-2.5">
+                    <span className="relative flex h-2.5 w-2.5">
+                        <span className="pulse-ring" />
+                        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--accent-a-200)]" />
+                    </span>
+                    <span className="font-mono text-[11px] text-[var(--text-secondary)]">Open to opportunities · Mumbai, India</span>
+                </GlassPanel>
             </motion.div>
 
             <motion.div
                 className="absolute bottom-8 right-6 z-10 flex flex-col items-center gap-2 md:right-16"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.6, duration: 0.6 }}
             >
-                <div className="h-12 w-[1px] bg-[var(--text-muted)]" style={{ animation: 'scrollBounce 2s ease-in-out infinite' }} />
-                <span className="font-mono text-[9px] uppercase tracking-widest text-[var(--text-muted)]">scroll</span>
+                <div className="flex h-[60px] w-[1px] flex-col items-center justify-start overflow-hidden bg-[var(--surface-border)]">
+                    <div className="scroll-indicator-thumb" />
+                </div>
+                <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-[var(--text-muted)]">SCROLL</span>
             </motion.div>
         </section>
     )

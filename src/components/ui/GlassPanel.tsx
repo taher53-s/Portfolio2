@@ -5,19 +5,36 @@ import { cn } from '@/lib/utils'
 interface GlassPanelProps {
     children: React.ReactNode
     className?: string
-    as?: keyof JSX.IntrinsicElements
 }
 
-export default function GlassPanel({ children, className, as: Tag = 'div' }: GlassPanelProps) {
+export default function GlassPanel({ children, className }: GlassPanelProps) {
     return (
-        <Tag
+        <div
             className={cn(
-                'relative rounded-2xl bg-[var(--surface-2)] border border-[var(--surface-border)] [backdrop-filter:var(--blur-md)] shadow-[var(--glow-xs),_0_1px_0_rgba(255,255,255,0.04)_inset]',
+                'relative overflow-hidden rounded-2xl',
                 className
             )}
+            style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.045) 0%, rgba(255,255,255,0.015) 100%)',
+                backdropFilter: 'var(--blur-md)',
+                WebkitBackdropFilter: 'var(--blur-md)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                borderTop: '1px solid rgba(255,255,255,0.12)',
+                borderLeft: '1px solid rgba(255,255,255,0.09)',
+                boxShadow: '0 1px 0 rgba(255,255,255,0.05) inset, 0 -1px 0 rgba(0,0,0,0.4) inset, 0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)',
+            }}
         >
-            <span className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-[0.03]" style={{ backgroundImage: 'url(/noise.svg)', backgroundRepeat: 'repeat', backgroundSize: '180px 180px' }} aria-hidden="true" />
-            <span className="relative z-[1] block">{children}</span>
-        </Tag>
+            <div
+                className="absolute inset-0 rounded-[inherit] pointer-events-none"
+                style={{
+                    backgroundImage: "url('/noise.svg')",
+                    backgroundRepeat: 'repeat',
+                    backgroundSize: '180px 180px',
+                    opacity: 0.025,
+                }}
+                aria-hidden="true"
+            />
+            <div className="relative">{children}</div>
+        </div>
     )
 }

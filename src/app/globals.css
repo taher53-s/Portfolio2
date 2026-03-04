@@ -293,3 +293,88 @@ body[data-cursor-state="magnetic"] [data-cursor-ring] {
   height: 56px;
   border-color: hsl(36 90% 58% / 0.85);
 }
+
+/* ── Text outline utility ────────────────────────────────────────────── */
+.text-outline {
+  -webkit-text-stroke: 2px var(--accent-a-200);
+  color: transparent;
+  paint-order: stroke fill;
+}
+
+/* ── Pulse ring (availability dot) ───────────────────────────────────── */
+.pulse-ring {
+  position: absolute;
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  background-color: var(--accent-a-200);
+  opacity: 0.5;
+  animation: pulse-ring-anim 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-ring-anim {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}
+
+/* ── Scroll indicator thumb ──────────────────────────────────────────── */
+.scroll-indicator-thumb {
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, var(--accent-a-200), transparent);
+  border-radius: 1px;
+  animation: scroll-thumb-bounce 2.4s ease-in-out infinite;
+}
+
+@keyframes scroll-thumb-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(20px);
+    opacity: 0.3;
+  }
+}
+
+/* ── Perspective grid ────────────────────────────────────────────────── */
+.perspective-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: perspective(600px) rotateX(55deg);
+  transform-origin: center bottom;
+  mask-image: radial-gradient(ellipse at center bottom, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center bottom, black 0%, transparent 70%);
+  opacity: 0.4;
+}
+
+/* ── Section underline ───────────────────────────────────────────────── */
+.section-underline {
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-a-200), transparent);
+  border-radius: 1px;
+}
+
+/* ── Font family utilities ───────────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
