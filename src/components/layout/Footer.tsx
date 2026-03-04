@@ -17,7 +17,7 @@ export default function Footer() {
                 <div className="grid gap-8 lg:grid-cols-2">
                     <div>
                         <span className="font-display text-xl font-bold text-[var(--accent-a-100)]">TS</span>
-                        <p className="mt-3 max-w-sm text-sm text-[var(--text-muted)]">
+                        <p className="mt-3 max-w-sm text-sm text-[var(--text-secondary)]">
                             Building at the intersection of AI, performance, and craft.
                         </p>
                     </div>

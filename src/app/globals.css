@@ -31,7 +31,7 @@
 
   --text-primary: hsl(210 40% 96%);
   --text-secondary: hsl(215 20% 65%);
-  --text-muted: hsl(215 15% 38%);
+  --text-muted: hsl(215 15% 48%);
   --text-code: hsl(156 60% 70%);
 
   --glow-xs: 0 0 8px var(--accent-a-glow);

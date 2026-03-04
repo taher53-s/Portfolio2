@@ -38,7 +38,7 @@ export default function Skills({ id }: SkillsProps) {
                                 <span className={accentTextMap[cat.accent]}>{iconMap[cat.icon]}</span>
                                 <h3 className="text-sm font-semibold text-[var(--text-primary)]">{cat.label}</h3>
                             </div>
-                            <p className="mt-2 text-xs text-[var(--text-muted)]">{cat.description}</p>
+                            <p className="mt-2 text-xs text-[var(--text-secondary)]">{cat.description}</p>
                             <motion.div className="mt-4 flex flex-wrap gap-1.5" variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                                 {cat.skills.map((s) => <SkillTag key={s} label={s} accent={cat.accent} />)}
                             </motion.div>

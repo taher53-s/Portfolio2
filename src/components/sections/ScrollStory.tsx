@@ -41,7 +41,11 @@ export default function ScrollStory({ id }: ScrollStoryProps) {
     return (
         <section id={id} ref={containerRef} className="relative" style={{ height: '400vh' }}>
             <div ref={stageRef} className="flex h-[100vh] items-center justify-center overflow-hidden">
-                <div className="relative h-full w-full">
+                <div
+                    style={{ position: 'absolute', inset: 0, background: 'rgba(11, 15, 20, 0.95)', zIndex: 0 }}
+                    aria-hidden="true"
+                />
+                <div className="relative h-full w-full" style={{ zIndex: 1 }}>
                     <div id="ch1" className="absolute inset-0 flex items-center justify-center px-8 text-center opacity-0">
                         <p className="max-w-3xl font-display text-3xl font-bold leading-snug text-[var(--text-primary)] md:text-5xl lg:text-6xl">
                             6 shipped products. 3 design systems. Zero compromises.

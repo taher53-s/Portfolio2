@@ -19,7 +19,7 @@ const Certifications = dynamic(() => import('@/components/sections/Certification
 
 export default function Home() {
     return (
-        <main>
+        <main style={{ backgroundColor: 'var(--surface-1)' }}>
             <Hero id="hero" />
             <ScrollStory id="story" />
             <About id="about" />
