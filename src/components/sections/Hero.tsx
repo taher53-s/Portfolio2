@@ -6,30 +6,6 @@ import MagneticButton from '@/components/ui/MagneticButton'
 import CounterStat from '@/components/ui/CounterStat'
 import GlassPanel from '@/components/ui/GlassPanel'
 
-const words1 = ['TAHER']
-const words2 = ['SOHAG-']
-const words3 = ['PURWALA']
-
-function WordReveal({ word, delay, outline }: { word: string; delay: number; outline?: boolean }) {
-    const reduced = useReducedMotion()
-    return (
-        <motion.span
-            className={`inline-block ${outline ? 'font-display font-extrabold text-outline' : 'font-display font-extrabold text-[var(--text-primary)]'}`}
-            style={{
-                fontSize: 'clamp(5rem, 13vw, 14rem)',
-                lineHeight: 0.9,
-                letterSpacing: '-0.05em',
-                ...(!outline ? { textShadow: '0 0 80px var(--accent-a-glow)' } : { paintOrder: 'stroke fill' }),
-            }}
-            initial={reduced ? {} : { clipPath: 'inset(100% 0 0 0)' }}
-            animate={reduced ? {} : { clipPath: 'inset(0% 0 0 0)' }}
-            transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
-        >
-            {word}
-        </motion.span>
-    )
-}
-
 const eyebrowSegments = ['BTech CS (AI & ML)', 'Atlas Skilltech', 'Mumbai', '2024–2028']
 
 interface HeroProps { id?: string }
@@ -38,10 +14,10 @@ export default function Hero({ id }: HeroProps) {
     const reduced = useReducedMotion()
 
     return (
-        <section id={id} className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 md:px-16 lg:px-24">
+        <section id={id} className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
             <GradientMeshBackground />
 
-            <div className="relative z-10 max-w-5xl">
+            <div className="relative z-10 w-full">
                 <motion.div
                     className="flex flex-wrap items-center gap-0 font-mono text-xs uppercase tracking-[0.2em] text-[var(--text-muted)]"
                     initial={reduced ? {} : { opacity: 0, y: 12, clipPath: 'inset(100% 0 0 0)' }}
@@ -56,21 +32,69 @@ export default function Hero({ id }: HeroProps) {
                     ))}
                 </motion.div>
 
-                <div className="mt-4 flex flex-col">
-                    {words1.map((w, i) => <WordReveal key={w} word={w} delay={0.4 + i * 0.1} />)}
-                    {words2.map((w, i) => <WordReveal key={w} word={w} delay={0.6 + i * 0.1} outline />)}
-                    {words3.map((w, i) => <WordReveal key={w} word={w} delay={0.8 + i * 0.1} />)}
-                </div>
+                <h1
+                    style={{
+                        fontFamily: 'var(--font-display)',
+                        fontWeight: 800,
+                        letterSpacing: '-0.04em',
+                        lineHeight: 0.9,
+                        marginTop: '1rem',
+                    }}
+                >
+                    {/* Line 1 — TAHER */}
+                    <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.05em' }}>
+                        <motion.span
+                            style={{
+                                display: 'block',
+                                fontSize: 'clamp(5rem, 15vw, 14rem)',
+                                background: 'linear-gradient(135deg, var(--accent-a-100), var(--accent-a-200))',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                backgroundClip: 'text',
+                                whiteSpace: 'nowrap',
+                                textShadow: 'none',
+                            }}
+                            initial={reduced ? {} : { clipPath: 'inset(100% 0 0 0)' }}
+                            animate={reduced ? {} : { clipPath: 'inset(0% 0 0 0)' }}
+                            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                        >
+                            TAHER
+                        </motion.span>
+                    </span>
+
+                    {/* Line 2 — SOHAGPURWALA */}
+                    <span style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.05em' }}>
+                        <motion.span
+                            style={{
+                                display: 'block',
+                                fontSize: 'clamp(3rem, 10.5vw, 10rem)',
+                                WebkitTextStroke: '1.5px rgba(240, 237, 230, 0.3)',
+                                WebkitTextFillColor: 'transparent',
+                                whiteSpace: 'nowrap',
+                            }}
+                            initial={reduced ? {} : { clipPath: 'inset(100% 0 0 0)' }}
+                            animate={reduced ? {} : { clipPath: 'inset(0% 0 0 0)' }}
+                            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                        >
+                            SOHAGPURWALA
+                        </motion.span>
+                    </span>
+                </h1>
 
                 <motion.p
-                    className="mt-6 text-lg text-[var(--text-secondary)] md:text-xl"
+                    style={{
+                        marginTop: 'clamp(1rem, 2vw, 2rem)',
+                        fontSize: 'clamp(0.85rem, 1.5vw, 1.1rem)',
+                        letterSpacing: '0.08em',
+                        color: 'var(--text-secondary)',
+                    }}
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.4, duration: 0.6 }}
                 >
                     Builder · Systems Thinker · AI/ML Engineer
                 </motion.p>
 
                 <motion.div
-                    className="mt-8 flex flex-wrap gap-4"
+                    className="mt-8 flex flex-col sm:flex-row flex-wrap gap-4"
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.8, duration: 0.6 }}
                 >
                     <MagneticButton variant="primary" href="#projects">View Work</MagneticButton>
@@ -78,7 +102,7 @@ export default function Hero({ id }: HeroProps) {
                 </motion.div>
 
                 <motion.div
-                    className="mt-12 flex flex-wrap gap-4"
+                    className="mt-12 flex flex-col sm:flex-row flex-wrap gap-4"
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 2.2, duration: 0.6 }}
                 >
                     {[
