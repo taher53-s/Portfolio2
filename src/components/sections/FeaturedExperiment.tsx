@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import MagneticButton from '@/components/ui/MagneticButton'
 import GradientMeshBackground from '@/components/sections/GradientMeshBackground'
@@ -39,7 +40,17 @@ export default function FeaturedExperiment({ id }: FeaturedExperimentProps) {
         <section id={id} ref={containerRef} className="relative overflow-hidden py-32 px-6 md:px-16 lg:px-24">
             <GradientMeshBackground />
             <div className="relative z-10 grid items-center gap-12 lg:grid-cols-2">
-                <div ref={imageRef} className="aspect-[16/10] overflow-hidden rounded-2xl" style={{ background: project.imageGradient }} />
+                <div ref={imageRef} className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '16 / 10' }}>
+                    <Image
+                        src={`/projects/${project.slug}.png`}
+                        alt={project.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 55vw"
+                        className="object-cover transition-transform duration-700 ease-[var(--ease-expo)] group-hover:scale-105"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
+                </div>
 
                 <div>
                     <span className="text-xs font-medium uppercase tracking-widest text-[var(--text-muted)]">The Experiment</span>

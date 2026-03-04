@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -14,6 +15,7 @@ interface ProjectCardProps {
 const statusColors = { shipped: 'text-[var(--accent-a-100)] border-[var(--accent-a-300)]', 'in-progress': 'text-[var(--accent-b-100)] border-[var(--accent-b-300)]', concept: 'text-[var(--accent-c-100)] border-[var(--accent-c-200)]/40' } as const
 
 export default function ProjectCard({ project, style }: ProjectCardProps) {
+    const [imgError, setImgError] = React.useState(false)
     return (
         <Link href={`/projects/${project.slug}`} data-cursor="pointer" className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-a-200)] rounded-2xl" prefetch>
             <motion.article
@@ -23,13 +25,19 @@ export default function ProjectCard({ project, style }: ProjectCardProps) {
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             >
                 <div className="relative w-full overflow-hidden" style={{ aspectRatio: '3 / 2' }}>
-                    <Image
-                        src={`/projects/${project.slug}.png`}
-                        alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-[var(--ease-expo)] group-hover:scale-105"
-                    />
+                    {imgError ? (
+                        <div className="absolute inset-0" style={{ background: project.imageGradient }} />
+                    ) : (
+                        <Image
+                            src={`/projects/${project.slug}.png`}
+                            alt={project.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-700 ease-[var(--ease-expo)] group-hover:scale-105"
+                            onError={() => setImgError(true)}
+                            priority={project.featured}
+                        />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent pointer-events-none" />
                     <div
                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"

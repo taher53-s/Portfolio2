@@ -1,5 +1,7 @@
 'use client'
 
+import React from 'react'
+import Image from 'next/image'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import GlassPanel from '@/components/ui/GlassPanel'
 import MagneticButton from '@/components/ui/MagneticButton'
@@ -20,7 +22,7 @@ export default function CaseStudies({ id }: CaseStudiesProps) {
                 {caseStudies.map((project, i) => (
                     <AnimatedSection key={project.slug} direction={i === 0 ? 'left' : 'right'} delay={0.1}>
                         <GlassPanel className="grid gap-6 p-6 md:grid-cols-[1fr_1.2fr]">
-                            <div className="aspect-[16/10] overflow-hidden rounded-xl" style={{ background: project.imageGradient }} />
+                            <CaseImage project={project} />
                             <div className="flex flex-col justify-center">
                                 <span className="text-[10px] font-medium uppercase tracking-widest text-[var(--text-muted)]">{project.category}</span>
                                 <h3 className="mt-2 text-xl font-bold text-[var(--text-primary)]">{project.title}</h3>
@@ -40,5 +42,26 @@ export default function CaseStudies({ id }: CaseStudiesProps) {
                 ))}
             </div>
         </section>
+    )
+}
+
+function CaseImage({ project }: { project: typeof caseStudies[number] }) {
+    const [imgError, setImgError] = React.useState(false)
+    return (
+        <div className="relative overflow-hidden rounded-xl" style={{ aspectRatio: '16 / 10' }}>
+            {imgError ? (
+                <div className="absolute inset-0" style={{ background: project.imageGradient }} />
+            ) : (
+                <Image
+                    src={`/projects/${project.slug}.png`}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover transition-transform duration-700 ease-[var(--ease-expo)] group-hover:scale-105"
+                    onError={() => setImgError(true)}
+                />
+            )}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
+        </div>
     )
 }
